@@ -1,0 +1,12 @@
+/*
+ * E-ADDONS for Elementor - Dynamic Tags
+ * e-addons.com
+ */
+
+/* DISABLE DYNAMIC TAGS FROM POPUP */
+.elementor-tag-settings-popup .elementor-control-dynamic-switcher {
+    display: none !important;
+}
+.elementor-tag-settings-popup .elementor-label-block > .elementor-control-content > .elementor-control-field > .elementor-control-input-wrapper {
+    margin-top: 2px;
+}
