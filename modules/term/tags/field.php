@@ -135,9 +135,9 @@ class Field extends Base_Tag {
         
         $term_id = $this->get_module()->get_term_id();
         
-        if ($settings['source']) { 
+        if ($settings['source']) {             
             if ($settings['source'] == 'other') {
-                if ($settings['term_id']) {
+                if ($settings['term_id']) {                    
                     return $settings['term_id'];
                 }
             }
@@ -164,13 +164,17 @@ class Field extends Base_Tag {
         if (empty($settings))
             return;
 
-        $term_id = $this->get_term_id();
+        $term_id = $this->get_term_id();        
 
         if ($term_id) {
             if (!empty($settings['tag_field'])) {
                 $field = $settings['tag_field'];
                 if ($field == 'link') {
+                    //$meta = Utils::get_term_url($term_id);
                     $meta = get_term_link($term_id);
+                    if (is_wp_error($meta) || !filter_var($meta, FILTER_VALIDATE_URL)) {
+                        $meta = ''; // Empty Term.                        
+                    }
                 } else {
                     $meta = get_term_field($field, $term_id);
                 }

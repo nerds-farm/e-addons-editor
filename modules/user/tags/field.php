@@ -74,7 +74,7 @@ class Field extends Base_Tag {
                         'last_name' => __('Last Name', 'e-addons'),
                         'user_login' => __('Login', 'e-addons'),
                         'user_email' => __('Email', 'e-addons'),
-                        'user_url' => __('Url', 'e-addons'),
+                        'user_url' => __('Url (Website)', 'e-addons'),
                         'nickname' => __('Nickname', 'e-addons'),
                         'roles' => __('Roles', 'e-addons'),
                         //'plugins_last_view' => __('Plugins last view', 'e-addons'),
@@ -155,7 +155,7 @@ class Field extends Base_Tag {
 
         $user_id = $this->get_module()->get_user_id();
 
-        if ($settings['source']) {
+        if (!empty($settings['source'])) {
             if ($settings['source'] == 'author') {
                 $user_id = $this->get_module('author')->get_user_id();
             }
@@ -185,7 +185,7 @@ class Field extends Base_Tag {
                 case 'roles':
                     global $wp_roles;
                     //var_dump($wp_roles); die();
-                    $user = get_user_by('ID', $user_id);
+                    $user = get_userdata($user_id);
                     $roles = (array) $user->roles;
                     $meta = array();
                     if (!empty($roles)) {
