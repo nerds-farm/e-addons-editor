@@ -119,6 +119,8 @@ class Field extends Base_Tag {
                         '' => __('Current', 'e-addons'),                        
                         'parent' => __('Parent', 'e-addons'),
                         'root' => __('Root', 'e-addons'),
+                        'previous' => __('Previous', 'e-addons'),
+                        'next' => __('Next', 'e-addons'),
                         'other' => __('Other', 'e-addons'),
                     ],
                     //'label_block' => true,
@@ -149,23 +151,42 @@ class Field extends Base_Tag {
         
         $post_id = get_the_ID();
         
-        if ($settings['source']) {            
-            if ($settings['source'] == 'other') {
-                if ($settings['post_id']) {
-                    return $settings['post_id'];
-                }
-            }
-            if ($post_id) {
-                do {
-                    $parent_id = wp_get_post_parent_id($post_id);
-                    if ($settings['source'] == 'parent') {
-                        return $parent_id;
+        if ($settings['source']) {        
+            switch($settings['source']) {
+                
+                case 'previous':
+                    $prev = get_adjacent_post();
+                    if ($prev && is_object($prev) && get_class($prev) == 'WP_Post') {
+                        return $prev->ID;
                     }
-                    if ($parent_id) {
-                        $post_id = $parent_id;
+                    break;
+
+                case 'next':
+                    $next = get_adjacent_post(false, '', false);
+                    if ($next && is_object($next) && get_class($next) == 'WP_Post') {                        
+                        return $next->ID;
                     }
-                } while($parent_id);
-                return $post_id;
+                    break;
+
+                case 'other':
+                    if ($settings['post_id']) {
+                        return $settings['post_id'];
+                    }
+                    break;
+
+                default:
+                    if ($post_id) {
+                        do {
+                            $parent_id = wp_get_post_parent_id($post_id);
+                            if ($settings['source'] == 'parent') {
+                                return $parent_id;
+                            }
+                            if ($parent_id) {
+                                $post_id = $parent_id;
+                            }
+                        } while($parent_id);
+                        return $post_id;
+                    }
             }
         }
         
