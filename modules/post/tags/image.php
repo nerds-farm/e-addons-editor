@@ -130,6 +130,7 @@ class Image extends Base_Tag {
                     'label_block' => true,
                     'query_type' => 'terms',
                     'multiple' => true,
+                    'separator' => 'before',
                     'condition' => [
                         'source' => ['previous', 'next'],
                     ]
@@ -140,6 +141,7 @@ class Image extends Base_Tag {
                 [
                     'label' => __('In same Term', 'elementor'),
                     'type' => Controls_Manager::SWITCHER,
+                    'separator' => 'before',
                     'condition' => [
                         'source' => ['previous', 'next'],
                     ]
