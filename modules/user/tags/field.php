@@ -79,7 +79,12 @@ class Field extends Base_Tag {
                                 'user_email' => __('Email', 'e-addons'),
                                 'user_url' => __('Url (Website)', 'e-addons'),
                                 'user_registered' => __('Registered', 'e-addons'),
-                                'roles' => __('Roles', 'e-addons'),
+                                'roles' => __('Roles', 'e-addons'),                                
+                            ],
+                        ],
+                        [
+                            'label' => __('Link', 'e-addons'),
+                            'options' => [
                                 "link" => __('Link (to Posts Archive)', 'e-addons'),
                             ],
                         ],

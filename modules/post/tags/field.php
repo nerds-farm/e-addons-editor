@@ -76,7 +76,13 @@ class Field extends Base_Tag {
                                 'post_title' => __('Title', 'e-addons'),
                                 'post_content' => __('Content', 'e-addons'),
                                 'post_excerpt' => __('Excerpt', 'e-addons'),
+                            ],
+                        ],
+                        [
+                            'label' => __('Link', 'e-addons'),
+                            'options' => [
                                 'permalink' => __('Permalink', 'e-addons'),
+                                'guid' => __('Guid', 'e-addons'),
                             ],
                         ],
                         [
@@ -104,11 +110,15 @@ class Field extends Base_Tag {
                                 'post_author' => __('Author ID', 'e-addons'),                                
                                 'post_parent' => __('Parent ID', 'e-addons'),
                                 'post_status' => __('Status', 'e-addons'),
-                                'post_password' => __('Password', 'e-addons'),
-                                'guid' => __('Guid', 'e-addons'),
+                                'post_password' => __('Password', 'e-addons'),                                
                                 'menu_order' => __('Menu Order', 'e-addons'),
                                 'post_content_filtered' => __('Content Filtered', 'e-addons'),
                                 'post_mime_type' => __('Mime Type', 'e-addons'),
+                            ],
+                        ],
+                        [
+                            'label' => __('Ping', 'e-addons'),
+                            'options' => [
                                 'ping_status' => __('Ping Status', 'e-addons'),
                                 'to_ping' => __('To Ping', 'e-addons'),
                                 'pinged	text' => __('Pinged Text', 'e-addons'),

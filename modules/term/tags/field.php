@@ -74,7 +74,12 @@ class Field extends Base_Tag {
                             'options' => [                                
                                 'name' => __('Name', 'e-addons'),
                                 "description" => __('Description', 'e-addons'),                        
-                                "count" => __('Count', 'e-addons'),
+                                "count" => __('Count', 'e-addons'),                                
+                            ],
+                        ],
+                        [
+                            'label' => __('Link', 'e-addons'),
+                            'options' => [
                                 "link" => __('Link (to Posts Archive)', 'e-addons'),
                             ],
                         ],
