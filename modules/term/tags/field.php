@@ -89,8 +89,7 @@ class Field extends Base_Tag {
                             ],
                         ],                       
                     ],
-                    //'options' => [],     
-                    'label_block' => true,
+                    //'options' => [],
                 ]
         );
 
