@@ -33,6 +33,7 @@ class Field extends Base_Tag {
     public function get_group() {
         return 'post';
     }
+
     public static function _group() {
         return self::_groups('post');
     }
@@ -62,36 +63,60 @@ class Field extends Base_Tag {
                 [
                     'label' => __('Field', 'elementor'),
                     'type' => Controls_Manager::SELECT,
-                    'options' => [
-                        '' => __('Custom', 'e-addons'),
-                        'ID' => __('ID', 'e-addons'),
-                        'post_title' => __('Title', 'e-addons'),
-                        'post_content' => __('Content', 'e-addons'),                        
-                        'post_content_filtered' => __('Content Filtered', 'e-addons'),
-                        'post_excerpt' => __('Excerpt', 'e-addons'),                        
-                        'post_name' => __('Name', 'e-addons'),
-                        'permalink' => __('Permalink', 'e-addons'),
-                        //'post_author' => __('Author ID', 'e-addons'),
-                        //'post_author_name' => __('Author Name', 'e-addons'),
-                        'post_date' => __('Creation Date', 'e-addons'),
-                        'post_date_gmt' => __('Creation Date GMT', 'e-addons'),
-                        'post_modified' => __('Modified Date', 'e-addons'),
-                        'post_modified_gmt' => __('Modified Date GMT', 'e-addons'),
-                        'post_status' => __('Status', 'e-addons'),
-                        'comment_status' => __('Comment Status', 'e-addons'),
-                        'comment_count' => __('Comment Count', 'e-addons'),
-                        //'ping_status' => __('Ping Status', 'e-addons'),
-                        'post_password' => __('Password', 'e-addons'),                        
-                        //'to_ping' => __('To Ping', 'e-addons'),
-                        //'pinged	text' => __('Pinged Text', 'e-addons'),                        
-                        //'post_parent' => __('Parent', 'e-addons'),
-                        //'post_parent_name' => __('Parent Name', 'e-addons'),
-                        'guid' => __('Guid', 'e-addons'),
-                        'menu_order' => __('Menu Order', 'e-addons'),
-                        //'post_type' => __('Comment Count', 'e-addons'),
-                        'post_mime_type' => __('Mime Type', 'e-addons'),                        
+                    'groups' => [
+                        [
+                            'label' => __('Custom', 'e-addons'),
+                            'options' => [
+                                '' => __('Custom', 'e-addons'),
+                            ],
+                        ],
+                        [
+                            'label' => __('Common', 'e-addons'),
+                            'options' => [                                
+                                'post_title' => __('Title', 'e-addons'),
+                                'post_content' => __('Content', 'e-addons'),
+                                'post_excerpt' => __('Excerpt', 'e-addons'),
+                                'permalink' => __('Permalink', 'e-addons'),
+                            ],
+                        ],
+                        [
+                            'label' => __('Date', 'e-addons'),
+                            'options' => [
+                                'post_date' => __('Creation Date', 'e-addons'),
+                                'post_date_gmt' => __('Creation Date GMT', 'e-addons'),
+                                'post_modified' => __('Modified Date', 'e-addons'),
+                                'post_modified_gmt' => __('Modified Date GMT', 'e-addons'),
+                            ],
+                        ],
+                        [
+                            'label' => __('Comment', 'e-addons'),
+                            'options' => [
+                                'comment_status' => __('Comment Status', 'e-addons'),
+                                'comment_count' => __('Comment Count', 'e-addons'),
+                            ],
+                        ],
+                        [
+                            'label' => __('Other', 'e-addons'),
+                            'options' => [
+                                'ID' => __('ID', 'e-addons'),
+                                'post_name' => __('Name', 'e-addons'),
+                                'post_type' => __('Post Type Slug', 'e-addons'),
+                                'post_author' => __('Author ID', 'e-addons'),                                
+                                'post_parent' => __('Parent ID', 'e-addons'),
+                                'post_status' => __('Status', 'e-addons'),
+                                'post_password' => __('Password', 'e-addons'),
+                                'guid' => __('Guid', 'e-addons'),
+                                'menu_order' => __('Menu Order', 'e-addons'),
+                                'post_content_filtered' => __('Content Filtered', 'e-addons'),
+                                'post_mime_type' => __('Mime Type', 'e-addons'),
+                                'ping_status' => __('Ping Status', 'e-addons'),
+                                'to_ping' => __('To Ping', 'e-addons'),
+                                'pinged	text' => __('Pinged Text', 'e-addons'),
+                            ],
+                        ],
                     ],
-                    //'label_block' => true,
+                //'options' => [],
+                //'label_block' => true,
                 ]
         );
 
@@ -109,24 +134,24 @@ class Field extends Base_Tag {
                     ]
                 ]
         );
-        
+
         $this->add_control(
                 'source',
                 [
                     'label' => __('Source', 'elementor'),
                     'type' => Controls_Manager::SELECT,
                     'options' => [
-                        '' => __('Current', 'e-addons'),                        
+                        '' => __('Current', 'e-addons'),
                         'parent' => __('Parent', 'e-addons'),
                         'root' => __('Root', 'e-addons'),
                         'previous' => __('Previous', 'e-addons'),
                         'next' => __('Next', 'e-addons'),
                         'other' => __('Other', 'e-addons'),
                     ],
-                    //'label_block' => true,
+                //'label_block' => true,
                 ]
         );
-        
+
         $this->add_control(
                 'post_id',
                 [
@@ -140,7 +165,7 @@ class Field extends Base_Tag {
                     ]
                 ]
         );
-        
+
         $this->add_control(
                 'excluded_terms',
                 [
@@ -150,6 +175,7 @@ class Field extends Base_Tag {
                     'label_block' => true,
                     'query_type' => 'terms',
                     'multiple' => true,
+                    'separator' => 'before',
                     'condition' => [
                         'source' => ['previous', 'next'],
                     ]
@@ -160,6 +186,7 @@ class Field extends Base_Tag {
                 [
                     'label' => __('In same Term', 'elementor'),
                     'type' => Controls_Manager::SWITCHER,
+                    'separator' => 'before',
                     'condition' => [
                         'source' => ['previous', 'next'],
                     ]
@@ -179,34 +206,46 @@ class Field extends Base_Tag {
                     ]
                 ]
         );
-        
-        
+
+
 
         Utils::add_help_control($this);
     }
-    
+
+    public function get_post_taxonomy($post_id) {
+        $post = get_post($post_id);
+        if ($post->post_type != 'post') {
+            $taxonomies = Utils::get_taxonomies($post->post_type);
+            if (!empty($taxonomies)) {
+                $taxonomies_keys = array_keys($taxonomies);
+                return end($taxonomies_keys);
+            }
+        }
+        return 'category';
+    }
+
     public function get_post_id() {
         $settings = $this->get_settings_for_display();
         if (empty($settings))
             return;
-        
+
         $post_id = get_the_ID();
-        
-        if ($settings['source']) {        
-            switch($settings['source']) {
-                
+
+        if ($settings['source']) {
+            switch ($settings['source']) {
+
                 case 'previous':
-                    $taxonomy = $settings['taxonomy'] ? $settings['taxonomy'] : 'category';
-                    $prev = get_adjacent_post((bool)$settings['in_same_term'], $settings['excluded_terms'], true, $taxonomy);
+                    $taxonomy = $settings['taxonomy'] ? $settings['taxonomy'] : $this->get_post_taxonomy($post_id);
+                    $prev = get_adjacent_post((bool) $settings['in_same_term'], $settings['excluded_terms'], true, $taxonomy);
                     if ($prev && is_object($prev) && get_class($prev) == 'WP_Post') {
                         return $prev->ID;
                     }
                     break;
 
                 case 'next':
-                    $taxonomy = $settings['taxonomy'] ? $settings['taxonomy'] : 'category';                    
-                    $next = get_adjacent_post((bool)$settings['in_same_term'], $settings['excluded_terms'], false, $taxonomy);
-                    if ($next && is_object($next) && get_class($next) == 'WP_Post') {                        
+                    $taxonomy = $settings['taxonomy'] ? $settings['taxonomy'] : $this->get_post_taxonomy($post_id);
+                    $next = get_adjacent_post((bool) $settings['in_same_term'], $settings['excluded_terms'], false, $taxonomy);
+                    if ($next && is_object($next) && get_class($next) == 'WP_Post') {
                         return $next->ID;
                     }
                     break;
@@ -227,12 +266,12 @@ class Field extends Base_Tag {
                             if ($parent_id) {
                                 $post_id = $parent_id;
                             }
-                        } while($parent_id);
+                        } while ($parent_id);
                         return $post_id;
                     }
             }
         }
-        
+
         return $post_id;
     }
 

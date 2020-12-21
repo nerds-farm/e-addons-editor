@@ -61,22 +61,35 @@ class Field extends Base_Tag {
                 'tag_field',
                 [
                     'label' => __('Field', 'elementor'),
-                    'type' => Controls_Manager::SELECT,
-                    'options' => [
-                        '' => __('Custom', 'e-addons'),                        
-                        'term_id' => __('ID', 'e-addons'),
-                        'name' => __('Name', 'e-addons'),
-                        'slug' => __('Slug', 'e-addons'),
-                        'term_group' => __('Term Group', 'e-addons'),
-                        "description" => __('Description', 'e-addons'),
-                        "parent" => __('Parent ID', 'e-addons'),
-                        "count" => __('Count', 'e-addons'),
-                        "filter" => __('Filter', 'e-addons'),
-                        "link" => __('Link (to Posts Archive)', 'e-addons'),
-                    //'comment_shortcuts' => __('Comment Shortcuts', 'e-addons'),
-                    //'yim' => __('YIM', 'e-addons'),
-                    //'jabber' => __('Jabber', 'e-addons'),
+                    'type' => Controls_Manager::SELECT,                    
+                    'groups' => [
+                        [
+                            'label' => __('Custom', 'e-addons'),
+                            'options' => [
+                                '' => __('Custom', 'e-addons'),
+                            ],
+                        ],
+                        [
+                            'label' => __('Common', 'e-addons'),
+                            'options' => [                                
+                                'name' => __('Name', 'e-addons'),
+                                "description" => __('Description', 'e-addons'),                        
+                                "count" => __('Count', 'e-addons'),
+                                "link" => __('Link (to Posts Archive)', 'e-addons'),
+                            ],
+                        ],
+                        [
+                            'label' => __('Other', 'e-addons'),
+                            'options' => [                                
+                                'term_id' => __('ID', 'e-addons'),
+                                "parent" => __('Parent ID', 'e-addons'),
+                                'slug' => __('Slug', 'e-addons'),
+                                "filter" => __('Filter', 'e-addons'),
+                                'term_group' => __('Term Group', 'e-addons'),
+                            ],
+                        ],                       
                     ],
+                    //'options' => [],     
                     'label_block' => true,
                 ]
         );
