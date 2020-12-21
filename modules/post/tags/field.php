@@ -140,6 +140,47 @@ class Field extends Base_Tag {
                     ]
                 ]
         );
+        
+        $this->add_control(
+                'excluded_terms',
+                [
+                    'label' => __('Excluded Terms', 'elementor'),
+                    'type' => 'e-query',
+                    'placeholder' => __('Select excluded Terms', 'elementor'),
+                    'label_block' => true,
+                    'query_type' => 'terms',
+                    'multiple' => true,
+                    'condition' => [
+                        'source' => ['previous', 'next'],
+                    ]
+                ]
+        );
+        $this->add_control(
+                'in_same_term',
+                [
+                    'label' => __('In same Term', 'elementor'),
+                    'type' => Controls_Manager::SWITCHER,
+                    'condition' => [
+                        'source' => ['previous', 'next'],
+                    ]
+                ]
+        );
+        $this->add_control(
+                'taxonomy',
+                [
+                    'label' => __('Taxonomy', 'elementor'),
+                    'type' => 'e-query',
+                    'placeholder' => __('Select Taxonomy', 'elementor'),
+                    'label_block' => true,
+                    'query_type' => 'taxonomies',
+                    'condition' => [
+                        'in_same_term!' => '',
+                        'source' => ['previous', 'next'],
+                    ]
+                ]
+        );
+        
+        
 
         Utils::add_help_control($this);
     }
@@ -155,14 +196,16 @@ class Field extends Base_Tag {
             switch($settings['source']) {
                 
                 case 'previous':
-                    $prev = get_adjacent_post();
+                    $taxonomy = $settings['taxonomy'] ? $settings['taxonomy'] : 'category';
+                    $prev = get_adjacent_post((bool)$settings['in_same_term'], $settings['excluded_terms'], true, $taxonomy);
                     if ($prev && is_object($prev) && get_class($prev) == 'WP_Post') {
                         return $prev->ID;
                     }
                     break;
 
                 case 'next':
-                    $next = get_adjacent_post(false, '', false);
+                    $taxonomy = $settings['taxonomy'] ? $settings['taxonomy'] : 'category';                    
+                    $next = get_adjacent_post((bool)$settings['in_same_term'], $settings['excluded_terms'], false, $taxonomy);
                     if ($next && is_object($next) && get_class($next) == 'WP_Post') {                        
                         return $next->ID;
                     }

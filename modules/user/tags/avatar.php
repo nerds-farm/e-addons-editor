@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
 
 class Avatar extends Base_Tag {
 
-    public $data = true;
+    public $is_data = true;
 
     public function get_name() {
         return 'e-tag-user-avatar';
