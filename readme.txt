@@ -20,6 +20,7 @@ Simplify your working area, removing extra bloated contents and add dynamic tags
 = 1.3.1 =
 * Add: on Dynamic Tag Post (Field and Image) the Previous/Next Source
 * UI: Dynamic Tag Fields options in groups
+* Fix: Compatibility with Elementor 3.1.0
 
 = 1.3 =
 * Add: Dynamic Tag Author
