@@ -35,7 +35,8 @@ class Dynamic_Tags_Enhanced extends Base_Tag {
     }
 
     public function add_actions() {
-        add_action('elementor/element/before_section_end', [$this, 'add_dynamic_tags'], 11, 3);
+        //add_action('elementor/element/before_section_end', [$this, 'add_dynamic_tags'], 11, 3);
+        add_action( 'elementor/controls/controls_registered', [$this, 'add_controls_dynamic_tags'], 999 );
 
         // fix section video background
         add_action("elementor/frontend/section/before_render", [$this, '_section_before_render']);
@@ -49,8 +50,19 @@ class Dynamic_Tags_Enhanced extends Base_Tag {
     public function get_icon() {
         return 'eadd-enhanced-dynamic-tags';
     }
+    
+    public function add_controls_dynamic_tags($manager) {        
+        $controls = $manager->get_controls();
+        foreach ($controls as $ckey => $control) {
+            if (in_array($control->get_type(), self::$types)) {
+                $dynamic = $control->get_settings('dynamic');        
+                $dynamic['active'] = true;
+                $control->set_settings('dynamic', $dynamic);  
+            }
+        }
+    }
 
-    public function add_dynamic_tags($element, $section_id, $args) {
+    /*public function add_dynamic_tags($element, $section_id, $args) {
         if (!in_array($element->get_name(), $this->excluded)) {
             $controls = $element->get_controls();
             foreach ($controls as $ckey => $controls) {
@@ -59,7 +71,6 @@ class Dynamic_Tags_Enhanced extends Base_Tag {
             }
         }
     }
-
     public static function _add_dynamic_tags($controls) {
         if (!empty($controls)) {
 
@@ -85,7 +96,7 @@ class Dynamic_Tags_Enhanced extends Base_Tag {
             }
         }
         return $controls;
-    }
+    }*/
 
     public function _section_before_render($element) {
         $settings = $element->get_settings_for_display();

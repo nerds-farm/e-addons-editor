@@ -17,8 +17,6 @@ class Editor_Tweak extends Base_Extension {
         return 'eadd-extensiion-editor';
     }
     
-    public $common_sections_actions = array();
-
     public function __construct() {
         parent::__construct();
         add_action('elementor/editor/after_enqueue_scripts', [$this, 'enqueue_editor_assets']);
