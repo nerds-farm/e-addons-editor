@@ -20,6 +20,7 @@ class Editor_Tweak extends Base_Extension {
     public function __construct() {
         parent::__construct();
         add_action('elementor/editor/after_enqueue_scripts', [$this, 'enqueue_editor_assets']);
+        add_action( 'elementor/preview/enqueue_styles', [ $this, 'preview_enqueue_styles' ] );
     }
 
     /**
@@ -34,4 +35,15 @@ class Editor_Tweak extends Base_Extension {
         wp_enqueue_script('e-addons-editor-plus');
     }
 
+    /**
+     * Enqueue admin styles
+     *
+     * @since 0.7.0
+     *
+     * @access public
+     */
+    public function preview_enqueue_styles() {
+        wp_enqueue_style('e-addons-preview-plus');
+        wp_enqueue_script('e-addons-editor-plus');
+    }
 }

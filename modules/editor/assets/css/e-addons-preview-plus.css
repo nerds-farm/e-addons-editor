@@ -1,0 +1,22 @@
+/*.elementor-edit-area-active .elementor-element-edit-mode:hover:after, 
+.elementor-edit-area-active .elementor-widget.elementor-element-edit-mode:hover:after*/ 
+.elementor-edit-area-active .elementor-element-editable:hover:before,
+.elementor-edit-area-active .elementor-widget.elementor-element-editable:hover:before {
+    content: attr(data-id);
+    display: block;
+    position: absolute;
+    background-image: linear-gradient(0deg,#41c9f4,#71d7f7);
+    background-color: #10bcf2;
+    cursor: pointer;
+    font-size: 11px;
+    color: #fff;
+    padding: 0 20px;
+    top: 0;
+    left: 0;
+}
+.elementor-element.elementor-column:before {
+    z-index: 2;
+}
+.elementor-element.elementor-widget:before {
+    z-index: 3;
+}

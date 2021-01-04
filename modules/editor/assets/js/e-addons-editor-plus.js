@@ -10,6 +10,7 @@ jQuery(document).ready(function () {
     elementType.forEach(function(item) {
         elementor.hooks.addAction('panel/open_editor/'+item, function (panel, model, view) {
             e_hide_description();
+            //e_show_element_id();
         });
     });
 
@@ -32,6 +33,12 @@ jQuery(document).ready(function () {
                     });
                 }
             });
+        }, 100);
+    }
+    
+    function e_show_element_id() {
+        setTimeout(function () {
+            console.log('e_show_element_id');
         }, 100);
     }
 
