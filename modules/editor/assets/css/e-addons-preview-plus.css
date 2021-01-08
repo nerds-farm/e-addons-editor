@@ -1,7 +1,7 @@
 /*.elementor-edit-area-active .elementor-element-edit-mode:hover:after, 
 .elementor-edit-area-active .elementor-widget.elementor-element-edit-mode:hover:after*/ 
-.elementor-edit-area-active .elementor-element-editable:hover:before,
-.elementor-edit-area-active .elementor-widget.elementor-element-editable:hover:before {
+.elementor-edit-area-active .elementor-element-editable:not(.elementor-absolute):not(.elementor-fixed):hover:before,
+.elementor-edit-area-active .elementor-widget.elementor-element-editable:not(.elementor-absolute):not(.elementor-fixed):hover:before {
     content: attr(data-id);
     display: block;
     position: absolute;

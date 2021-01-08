@@ -87,9 +87,24 @@ class Image extends Base_Tag {
                         '' => __('Current', 'e-addons'),                        
                         'parent' => __('Parent', 'e-addons'),
                         'root' => __('Root', 'e-addons'),
-                        'other' => __('Other', 'e-addons'),
+                        'post' => __('Post', 'e-addons'),
+                        'other' => __('Other', 'e-addons'),                        
                     ],
                     //'label_block' => true,
+                ]
+        );
+        
+        $this->add_control(
+                'taxonomy',
+                [
+                    'label' => __('Taxonomy', 'elementor'),
+                    'type' => 'e-query',
+                    'placeholder' => __('Select Taxonomy', 'elementor'),
+                    'label_block' => true,
+                    'query_type' => 'taxonomies',
+                    'condition' => [
+                        'source' => 'post',
+                    ]
                 ]
         );
         
@@ -135,6 +150,14 @@ class Image extends Base_Tag {
             if ($settings['source'] == 'other') {
                 if ($settings['term_id']) {
                     return $settings['term_id'];
+                }
+            }
+            if ($settings['source'] == 'post') {
+                $taxonomy = $settings['taxonomy'] ? $settings['taxonomy'] : 'category';
+                $terms = get_the_terms(get_the_ID(), $taxonomy);
+                if (!empty($terms)) {
+                    $term = reset($terms);
+                    return $term->term_id;
                 }
             }
             if ($term_id) {
