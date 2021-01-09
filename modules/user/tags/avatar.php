@@ -13,6 +13,8 @@ if (!defined('ABSPATH')) {
 }
 
 class Avatar extends Base_Tag {
+    
+    use \EAddonsEditor\Modules\User\Traits\Users;
 
     public $is_data = true;
 
@@ -196,6 +198,8 @@ class Avatar extends Base_Tag {
                     ]
                 ]
         );
+        
+        $this->add_source_controls();
 
         Utils::add_help_control($this);
     }
@@ -204,9 +208,8 @@ class Avatar extends Base_Tag {
         $settings = $this->get_settings();
         if (empty($settings))
             return;
-
         
-        $user_id = $this->get_module()->get_user_id();
+        $user_id = $this->get_user_id();
 
         $id = '';
         $url = '';

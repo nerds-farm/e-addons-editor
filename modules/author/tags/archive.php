@@ -13,6 +13,8 @@ if (!defined('ABSPATH')) {
 }
 
 class Archive extends Base_Tag {
+    
+    use \EAddonsEditor\Modules\User\Traits\Users;
 
     public function get_name() {
         return 'e-tag-author-archive';
@@ -50,7 +52,7 @@ class Archive extends Base_Tag {
         if (empty($settings))
             return;
 
-        $user_id = $this->get_module()->get_user_id();
+        $user_id = $this->get_author_id();
         $url = get_author_posts_url($user_id);
         echo $url;
     }

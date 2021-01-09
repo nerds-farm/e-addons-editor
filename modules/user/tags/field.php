@@ -13,6 +13,8 @@ if (!defined('ABSPATH')) {
 }
 
 class Field extends Base_Tag {
+    
+    use \EAddonsEditor\Modules\User\Traits\Users;
 
     public function get_name() {
         return 'e-tag-user-field';
@@ -145,59 +147,10 @@ class Field extends Base_Tag {
                     ]
                 ]
         );
-
-        if ($this->get_name() == 'e-tag-user-field') {
-
-            $this->add_control(
-                    'source',
-                    [
-                        'label' => __('Source', 'elementor'),
-                        'type' => Controls_Manager::SELECT,
-                        'options' => [
-                            '' => __('Current (Logged In)', 'e-addons'),
-                            'author' => __('Author', 'e-addons'),
-                            'other' => __('Other', 'e-addons'),
-                        ],
-                    //'label_block' => true,
-                    ]
-            );
-            $this->add_control(
-                    'user_id',
-                    [
-                        'label' => __('User', 'elementor'),
-                        'type' => 'e-query',
-                        'placeholder' => __('Select other User', 'elementor'),
-                        'label_block' => true,
-                        'query_type' => 'users',
-                        'condition' => [
-                            'source' => 'other',
-                        ]
-                    ]
-            );
-        }
+        
+        $this->add_source_controls();        
 
         Utils::add_help_control($this);
-    }
-
-    public function get_user_id() {
-        $settings = $this->get_settings_for_display();
-        if (empty($settings))
-            return;
-
-        $user_id = $this->get_module()->get_user_id();
-
-        if (!empty($settings['source'])) {
-            if ($settings['source'] == 'author') {
-                $user_id = $this->get_module('author')->get_user_id();
-            }
-            if ($settings['source'] == 'other') {
-                if (!empty($settings['user_id'])) {
-                    $user_id = $settings['user_id'];
-                }
-            }
-        }
-
-        return $user_id;
     }
 
     public function render() {

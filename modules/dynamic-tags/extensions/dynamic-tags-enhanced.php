@@ -27,7 +27,7 @@ class Dynamic_Tags_Enhanced extends Base_Tag {
         Controls_Manager::MEDIA,
         Controls_Manager::GALLERY,
     ];
-    public $excluded = ['popup_triggers', 'popup_timing'];
+    public $excluded = ['popup_timing'];
 
     public function __construct() {
         parent::__construct();
@@ -37,7 +37,11 @@ class Dynamic_Tags_Enhanced extends Base_Tag {
     public function add_actions() {
         //add_action('elementor/element/before_section_end', [$this, 'add_dynamic_tags'], 11, 3);
         add_action( 'elementor/controls/controls_registered', [$this, 'add_controls_dynamic_tags'], 999 );
-
+        
+        // fix PRO Popup Triggers
+        add_action('elementor/element/popup_triggers/triggers/before_section_end', [$this, 'remove_dynamic_tags'], 11, 2);
+        add_action('elementor/element/popup_timing/timing/before_section_end', [$this, 'remove_dynamic_tags'], 11, 2);
+        
         // fix section video background
         add_action("elementor/frontend/section/before_render", [$this, '_section_before_render']);
         add_action("elementor/frontend/section/after_render", [$this, '_section_after_render']);
@@ -62,7 +66,39 @@ class Dynamic_Tags_Enhanced extends Base_Tag {
         }
     }
 
+    public function remove_dynamic_tags($element, $args) {
+        $controls = $element->get_controls();
+        foreach ($controls as $ckey => $controls) {
+            $controls = self::_remove_dynamic_tags($controls);
+            $element->update_control($ckey, $controls);
+        }
+    }
+    public static function _remove_dynamic_tags($controls) {
+        if (!empty($controls)) {
+
+            foreach ($controls as $key => $control) {
+                if ($key != 'dynamic') {
+                    if (is_array($control)) {
+                        $controls[$key] = self::_remove_dynamic_tags($control);
+                    }
+                }
+            }
+
+            if (!empty($controls['type']) && !is_array($controls['type']) && in_array($controls['type'], self::$types)) {
+                $controls_manager = \Elementor\Plugin::$instance->controls_manager;
+                $control = $controls_manager->get_control($controls['type']);
+                if ($control) {
+                    $dynamic = $control->delete_setting('dynamic');                    
+                }
+            }
+        }
+        return $controls;
+    }
+    
     /*public function add_dynamic_tags($element, $section_id, $args) {
+        if (in_array($element->get_name(), $this->excluded)) {
+            //var_dump($element->get_name()); var_dump($section_id); die();
+        }
         if (!in_array($element->get_name(), $this->excluded)) {
             $controls = $element->get_controls();
             foreach ($controls as $ckey => $controls) {
@@ -97,6 +133,7 @@ class Dynamic_Tags_Enhanced extends Base_Tag {
         }
         return $controls;
     }*/
+    
 
     public function _section_before_render($element) {
         $settings = $element->get_settings_for_display();
