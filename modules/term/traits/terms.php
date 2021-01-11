@@ -14,7 +14,7 @@ trait Terms {
                     'label' => __('Source', 'elementor'),
                     'type' => Controls_Manager::SELECT,
                     'options' => [
-                        '' => __('Current', 'e-addons'),                        
+                        '' => __('Current (Term Archive)', 'e-addons'),                        
                         'parent' => __('Parent', 'e-addons'),
                         'root' => __('Root', 'e-addons'),
                         'post' => __('Current Post', 'e-addons'),
@@ -66,8 +66,17 @@ trait Terms {
                     return $settings['term_id'];
                 }
             }
-            if ($settings['source'] == 'post') {
-                $taxonomy = $settings['taxonomy'] ? $settings['taxonomy'] : 'category';
+            if ($settings['source'] == 'post') {                
+                //$post_id = get_the_ID();
+                $post_type = get_post_type();                
+                $taxonomy = 'category';
+                if ($post_type && $post_type != 'post') {
+                    $taxonomies = get_post_taxonomies();
+                    if (!empty($taxonomies)) {
+                        $taxonomy = reset($taxonomies);
+                    }
+                }
+                $taxonomy = $settings['taxonomy'] ? $settings['taxonomy'] : $taxonomy;
                 $terms = get_the_terms(get_the_ID(), $taxonomy);
                 if (!empty($terms)) {
                     $term = reset($terms);
