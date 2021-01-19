@@ -34,6 +34,13 @@ trait Background_Slideshow_Gallery {
         $module->unregister_tag( $this->get_name()  );
     }
     
+    public function get_title() {
+        $tmp = explode('\\', __CLASS__);
+        $title = end($tmp);
+        $title = str_replace('_', ' ', $title);
+        return __($title.' Background Slider Fix');
+    }
+    
     public function get_icon() {
         return 'eadd-dynamic-tag-bggalleryslider';
     }

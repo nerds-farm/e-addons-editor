@@ -12,16 +12,11 @@ if (!defined('ABSPATH')) {
 if ( function_exists( 'wpcf_admin_fields_get_groups' )
         && class_exists('\ElementorPro\Modules\DynamicTags\Toolset\Tags\Toolset_Gallery')) {
     class Toolset_Gallery extends \ElementorPro\Modules\DynamicTags\Toolset\Tags\Toolset_Gallery {
-        use \EAddonsEditor\Modules\DynamicTags\Traits\Background_Slideshow_Gallery;        
-        public function get_title() {
-            return __('Toolset Gallery Background Slider Fix');
-        }
+        use \EAddonsEditor\Modules\DynamicTags\Traits\Background_Slideshow_Gallery;
     }
 } else {
-    class Toolset_Gallery extends Base_Tag {        
-        public $ignore = true;        
-        public function get_title() {
-            return __('Toolset Gallery Background Slider Fix');
-        }
+    class Toolset_Gallery extends Base_Tag {
+        use \EAddonsEditor\Modules\DynamicTags\Traits\Background_Slideshow_Gallery;
+        public $ignore = true;
     }
 }
