@@ -35,7 +35,9 @@ trait Background_Slideshow_Gallery {
     }
     
     public function get_icon() {
-        return 'eicon-database';
+        return 'eadd-dynamic-tag-bggalleryslider';
     }
-
+    public function get_pid() {
+        return 8849;
+    }
 }

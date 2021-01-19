@@ -21,13 +21,13 @@ class Date_Time_Dynamic extends \Elementor\Control_Date_Time {
     use \EAddonsForElementor\Base\Traits\Base;
 
     public function get_icon() {
-        return 'eadd-enhanced-dynamic-tags';
+        return 'eadd-dynamic-tag-datetime';
     }
 
     public function get_pid() {
         return 1302;
     }
-
+    
     /**
      * Get date time control default settings.
      *
