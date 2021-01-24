@@ -131,6 +131,18 @@ class Field extends Base_Tag {
                 //'label_block' => true,
                 ]
         );
+        
+        $this->add_control(
+                'date_format',
+                [
+                    'label' => __('Date Format', 'elementor'),
+                    'type' => Controls_Manager::TEXT,
+                    'placeholder' => __('Y-m-h', 'elementor'),
+                    'condition' => [
+                        'tag_field' => ['post_date','post_date_gmt','post_modified','post_modified_gmt'],
+                    ]
+                ]
+        );
 
         $this->add_control(
                 'custom',
@@ -166,6 +178,12 @@ class Field extends Base_Tag {
                     $meta = get_permalink($post_id);
                 } else {
                     $meta = get_post_field($field, $post_id);
+                }
+                if (in_array($field, ['post_date','post_date_gmt','post_modified','post_modified_gmt'])) {
+                    if ($settings['date_format']) {
+                        $time = strtotime($meta);
+                        $meta = date($settings['date_format'], $time);
+                    }
                 }
             } else {
                 $field = $settings['custom'];

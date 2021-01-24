@@ -19,8 +19,8 @@
     padding: 2px 4px;
     margin: 0 4px;
     cursor: pointer;
-    left: -1px;
-    transform: translateY(-100%);
+    /*left: -1px;
+    transform: translateY(-100%);*/
 }
 
 /******************************************************************************/

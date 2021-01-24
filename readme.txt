@@ -4,7 +4,7 @@ Donate link: https://e-addons.com/donate/
 Tags: elementor, addons, extension, dynamic, template, display, visibility, hide, hidden
 Requires at least: 5.0
 Tested up to: 5.5.1
-Stable tag: 1.5.1
+Stable tag: 1.6
 Requires PHP: 7.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -17,7 +17,12 @@ Simplify your working area, removing extra bloated contents and add dynamic tags
 
 == Changelog ==
 
+= 1.6 =
+* Add: Unlimited Nested Inner Sections
+* Fix: minor fixes
+
 = 1.5.1 =
+* Add: Dynamic Tag Post Date Format
 * Update: Icons and Titles
 * Fix: minor fixes
 
