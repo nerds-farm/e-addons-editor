@@ -7,6 +7,9 @@
     border-bottom: 15px solid white;
     color: white;
 }
+.elementor-controls-finder__results__item__name {
+    display: none;
+}
 
 #elementor-controls-finder__search {
     padding:14px 15px 14px 21px;

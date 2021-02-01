@@ -29,6 +29,10 @@
                     jQuery.each(model.attributes.settings.controls, function (index, element) {
                         if (element.type == 'hidden')
                             return;
+                        if (element.type == 'raw_html')
+                            return;
+                        if (element.type == 'heading')
+                            return;
                         if (element.type == 'tab')
                             return;
                         if (element.responsive && (element.responsive.max == 'mobile' || element.responsive.max == 'tablet'))
@@ -41,17 +45,71 @@
 
                             var section_name = (element.type == 'section') ? element.name : element.section;
                             if (!jQuery('.elementor-controls-finder__results__category--' + section_name).length) {
-                                var section_label = model.attributes.settings.controls[section_name].label;
+                                var section_label = model.attributes.settings.controls[section_name].label.replace(/(<([^>]+)>)/gi, "");
                                 //var tab_label = model.attributes.settings.controls[element.tab].label;
                                 var tab_label = jQuery('.elementor-component-tab.elementor-panel-navigation-tab.elementor-tab-control-'+element.tab).text();
                                 econtrols_finder_results.append('<div class="elementor-controls-finder__results__category elementor-controls-finder__results__category--' + section_name + '"><div class="elementor-controls-finder__results__category__title"> ' + tab_label + ' / ' + section_label + ' </div><div class="elementor-controls-finder__results__category__items"></div></div>');
                             }
                             //.append('<div class="elementor-control elementor-controls-finder-' + index + ' elementor-label-inline elementor-control-separator-default"><div class="elementor-control-content"><div class="elementor-control-field"><label class="elementor-control-title"><b>' + element.label + '</b><br>' + index + '</label><div class="elementor-control-input-wrapper elementor-control-unit-5">Type: ' + element.type + '<br>Tab: ' + element.tab + (element.section ? '<br>Section: ' + element.section : '') + '</div></div></div></div>');                        
-                            jQuery('.elementor-controls-finder__results__category--' + section_name + ' .elementor-controls-finder__results__category__items').append('<div class="elementor-controls-finder__results__item"><a href="#' + section_name + '" class="elementor-controls-finder-' + index + ' elementor-controls-finder__results__item__link"><div class="elementor-controls-finder__results__item__icon"><i class="eicon-document-file"></i></div><div class="elementor-controls-finder__results__item__title"><b>' + element.label + '</b><br>' +element.name + ' </div><div class="elementor-controls-finder__results__item__description">- ' + element.type + '</div></a></div>');
+                            let icon = 'eicon-call-to-action';
+                            switch (element.type) {
+                                case 'section':
+                                    icon = 'eicon-section';
+                                    break;                                
+                                case 'gallery':
+                                    icon = 'eicon-photo-library';
+                                    break;  
+                                case 'media':
+                                    icon = 'eicon-image';
+                                    break;                            
+                                case 'code':
+                                    icon = 'eicon-code';
+                                    break;
+                                case 'url':
+                                    icon = 'eicon-url';
+                                    break;
+                                case 'wysiwyg':
+                                case 'textarea':
+                                    icon = 'eicon-text-area';
+                                    break;
+                                case 'text':
+                                    icon = 'eicon-text-field';
+                                    break;
+                                case 'switcher':
+                                    icon = 'eicon-dual-button';
+                                    break;
+                                case 'choose':
+                                    icon = 'eicon-form-vertical';
+                                    break;    
+                                case 'repeater':
+                                    icon = 'eicon-editor-list-ul';
+                                    break;  
+                                case 'slider':
+                                    icon = 'eicon-h-align-stretch';
+                                    break;
+                                case 'dimension':
+                                    icon = 'eicon-spacer';
+                                    break;
+                                case 'number':
+                                    icon = 'eicon-number-field';
+                                    break;
+                                case 'color':
+                                    icon = 'eicon-global-colors';
+                                    break;
+                                case 'font':
+                                    icon = 'eicon-t-letter-bold';
+                                    break;
+                                case 'select2':
+                                case 'select':
+                                    icon = 'eicon-select';
+                                    break;
+                            }
+                            
+                            jQuery('.elementor-controls-finder__results__category--' + section_name + ' .elementor-controls-finder__results__category__items').append('<div class="elementor-controls-finder__results__item"><a href="#' + section_name + '" class="elementor-controls-finder-' + index + ' elementor-controls-finder__results__item__link"><div class="elementor-controls-finder__results__item__icon"><i class="'+icon+'"></i></div><div class="elementor-controls-finder__results__item__title"><b>' + element.label.replace(/(<([^>]+)>)/gi, "") + '</b><span class="elementor-controls-finder__results__item__name">' +element.name + '</span> </div><div class="elementor-controls-finder__results__item__description">- ' + element.type + '</div></a><div class="elementor-finder__results__item__actions"><abbr title="'+index+'" class="elementor-finder__results__item__action elementor-finder__results__item__action--info"><i class="eicon-alert"></i></abbr></div>');
 
                             n_results++;
 
-                            jQuery('.elementor-controls-finder-' + index).on('click', function () {
+                            jQuery('.elementor-controls-finder-' + index).on('mousedown click', function () {
                                 econtrols_finder_results.html('');
                                 jQuery("#elementor-controls-finder").hide();
                                 console.log(element);
@@ -80,7 +138,8 @@
                                                 console.log(element.condition);
                                                 if (element.condition) {
                                                     jQuery.each(element.condition, function (cond, val) {
-                                                        hint += '<li><i>"' + cond + '"</i> : "' + val + '"</li>';
+                                                        let cond_label = model.attributes.settings.controls[cond] ? model.attributes.settings.controls[cond].label : cond;
+                                                        hint += '<li><i>"' + cond_label + '"</i> : "' + val + '"</li>';
                                                     });
                                                 }
                                                 hint += '</ul></div></div></div>';
