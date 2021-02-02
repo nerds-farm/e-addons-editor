@@ -8,15 +8,15 @@ if (!defined('ABSPATH')) {
 }
 
 class Inner_Section extends Base_Extension {
-    /*
+    
     public function get_pid() {
-        return 403;
+        return 11283;
     }
     
     public function get_icon() {
-        return 'eadd-extensiion-editor';
+        return 'eadd-inner_sections';
     }
-    */
+    
     public function __construct() {
         parent::__construct();
         add_action('elementor/editor/after_enqueue_scripts', [$this, 'enqueue_editor_assets']);

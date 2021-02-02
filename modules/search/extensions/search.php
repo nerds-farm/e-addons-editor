@@ -12,14 +12,19 @@ class Search extends Base_Extension {
     public function get_pid() {
         return 403;
     }
+    */
+    
+    public function show_in_settings() {
+        return false;
+    }
     
     public function get_icon() {
-        return 'eadd-extensiion-editor';
+        return 'eadd-editor-control-search';
     }
-    */
+    
     public function __construct() {
         parent::__construct();
-        add_action('elementor/editor/after_enqueue_scripts', [$this, 'enqueue_editor_assets']);
+        //add_action('elementor/editor/after_enqueue_scripts', [$this, 'enqueue_editor_assets']);
     }
 
     /**
