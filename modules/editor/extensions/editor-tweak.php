@@ -21,6 +21,13 @@ class Editor_Tweak extends Base_Extension {
         parent::__construct();
         add_action('elementor/editor/after_enqueue_scripts', [$this, 'enqueue_editor_assets']);
         add_action( 'elementor/preview/enqueue_styles', [ $this, 'preview_enqueue_styles' ] );
+        
+        /*
+        add_action('elementor/editor/init', function() {
+            $settings = \Elementor\Core\Settings\Manager::get_settings_managers('editorPreferences')->get_model()->get_settings();
+            //var_dump($settings); die();
+        });
+        */
     }
 
     /**

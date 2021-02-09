@@ -94,46 +94,6 @@ class Dynamic_Tags_Enhanced extends Base_Tag {
         }
         return $controls;
     }
-    
-    /*public function add_dynamic_tags($element, $section_id, $args) {
-        if (in_array($element->get_name(), $this->excluded)) {
-            //var_dump($element->get_name()); var_dump($section_id); die();
-        }
-        if (!in_array($element->get_name(), $this->excluded)) {
-            $controls = $element->get_controls();
-            foreach ($controls as $ckey => $controls) {
-                $controls = self::_add_dynamic_tags($controls);
-                $element->update_control($ckey, $controls);
-            }
-        }
-    }
-    public static function _add_dynamic_tags($controls) {
-        if (!empty($controls)) {
-
-            foreach ($controls as $key => $control) {
-                if ($key != 'dynamic') {
-                    if (is_array($control)) {
-                        $controls[$key] = self::_add_dynamic_tags($control);
-                    }
-                }
-            }
-
-            if (!empty($controls['type']) && !is_array($controls['type']) && in_array($controls['type'], self::$types)) {
-                $controls_manager = \Elementor\Plugin::$instance->controls_manager;
-                $control = $controls_manager->get_control($controls['type']);
-                if ($control) {
-                    $dynamic = $control->get_settings('dynamic');
-                    if (!empty($dynamic)) {
-                        if (empty($controls['dynamic']) || (isset($controls['dynamic']['active']) && !$controls['dynamic']['active'])) {
-                            $controls['dynamic']['active'] = true;
-                        }
-                    }
-                }
-            }
-        }
-        return $controls;
-    }*/
-    
 
     public function _section_before_render($element) {
         $settings = $element->get_settings_for_display();

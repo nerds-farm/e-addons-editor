@@ -11,7 +11,7 @@
         return e[t].actions.push({
             name: 'add-nested-section',
             title: 'Add Inner Section',
-            icon: 'eadd-inner_sections', //eicon-inner-section',
+            icon: 'eicon-inner-section eadd-inner_sections',
             callback: function () {
                 !function (e) {
                     var n = e.getContainer().view;

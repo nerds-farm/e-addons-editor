@@ -4,7 +4,7 @@ Donate link: https://e-addons.com/donate/
 Tags: elementor, addons, extension, dynamic, template, display, visibility, hide, hidden
 Requires at least: 5.0
 Tested up to: 5.5.1
-Stable tag: 1.6
+Stable tag: 1.7
 Requires PHP: 7.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -16,6 +16,10 @@ Greater cleanliness in the Editor and forced Dynamic Tags on all controls
 Simplify your working area, removing extra bloated contents and add dynamic tags to all supported Controls.
 
 == Changelog ==
+
+= 1.7 =
+* Add: Dynamic Tag Form
+* Fix: minor fixes
 
 = 1.6 =
 * Add: Unlimited Nested Inner Sections
