@@ -45,6 +45,8 @@ class Field extends Base_Tag {
                 'text', //\Elementor\Modules\DynamicTags\Module::TEXT_CATEGORY,
                 'url', //\Elementor\Modules\DynamicTags\Module::URL_CATEGORY
                 'image', //\Elementor\Modules\DynamicTags\Module::IMAGE_CATEGORY,
+                'number', //\Elementor\Modules\DynamicTags\Module::NUMBER_CATEGORY,
+                'post_meta', //\Elementor\Modules\DynamicTags\Module::POST_META_CATEGORY,
             ];
         }
         return [];

@@ -9,15 +9,16 @@ if (!defined('ABSPATH')) {
 }
 
 class Pro extends Base_Extension {
+    
     /*
     public function get_pid() {
         return 403;
     }
-    
-    public function get_icon() {
-        return 'eadd-extensiion-editor';
-    }
     */
+    public function get_icon() {
+        return 'eicon-elementor-circle';
+    }
+    
     
     public function __construct() {
         parent::__construct();
