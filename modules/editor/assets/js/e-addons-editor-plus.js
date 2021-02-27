@@ -9,13 +9,12 @@
     "use strict";
     // Load everything when elementor is initialised
     jQuery(window).on('elementor:init', function () {
-
+    //jQuery(window).on('load', function () {
         let elementType = ['section', 'column', 'widget'];
         elementType.forEach(($item) => {
             if (elementor) {
-                elementor.hooks.addAction('panel/open_editor/' + item, function (panel, model, view) {
+                elementor.hooks.addAction('panel/open_editor/' + $item, function (panel, model, view) {
                     e_hide_description();
-                    //e_show_element_id();
                 });
             }
         });
@@ -39,13 +38,6 @@
                 });
             }, 100);
         }
-
-        function e_show_element_id() {
-            setTimeout(function () {
-                console.log('e_show_element_id');
-            }, 100);
-        }
-
-
+        
     });
 })(jQuery);
