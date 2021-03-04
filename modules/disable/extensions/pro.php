@@ -10,15 +10,26 @@ if (!defined('ABSPATH')) {
 
 class Pro extends Base_Extension {
     
-    /*
+    
     public function get_pid() {
-        return 403;
-    }
-    */
-    public function get_icon() {
-        return 'eicon-elementor-circle';
+        return 6871;
     }
     
+    public function get_icon() {
+        return 'enabledisabe_elementorwidgets';
+    }
+    
+    /**
+     * Get Label
+     *
+     * Returns the action label
+     *
+     * @access public
+     * @return string
+     */
+    public function get_label() {
+        return __('Disable PRO in Editor', 'e-addons');
+    }
     
     public function __construct() {
         parent::__construct();

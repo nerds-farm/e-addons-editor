@@ -17,18 +17,16 @@ class Icon extends Base_Tag {
         return 'e-tag-icon-field';
     }
     
-    /*
     public function get_icon() {
-        return 'eadd-dynamic-tag-icon-field';
+        return 'eadd-dynamic-tag-icon';
     }
-
+    
     public function get_pid() {
-        return 12799;
+        return 14918;
     }
-    */
     
     public function get_title() {
-        return __('Icon', 'e-addons');
+        return __('Icon Text', 'e-addons');
     }
 
     public function get_categories() {
@@ -70,8 +68,9 @@ class Icon extends Base_Tag {
         $settings = $this->get_settings();
         if (empty($settings['icon']))
             return;
-
-        echo Utils::get_icon($settings['icon']);
+        $icon = Utils::get_icon($settings['icon']);
+        $icon = str_replace('class="', 'class="e-add-icon ', $icon);
+        echo $icon;
     }
 
 }
