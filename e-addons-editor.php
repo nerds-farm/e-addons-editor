@@ -6,7 +6,7 @@
  * Plugin Name:       e-addons EDITOR
  * Plugin URI:        https://e-addons.com
  * Description:       Greater cleanliness in the Editor and forced Dynamic Tags on all controls
- * Version:           1.7
+ * Version:           1.8
  * Author:            Nerds Farm
  * Author URI:        https://nerds.farm
  * Text Domain:       e-addons-editor
