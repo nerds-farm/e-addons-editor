@@ -16,7 +16,7 @@ class Pro extends Base_Extension {
     }
     
     public function get_icon() {
-        return 'enabledisabe_elementorwidgets';
+        return 'eadd-enabledisabe_elementorwidgets';
     }
     
     /**
