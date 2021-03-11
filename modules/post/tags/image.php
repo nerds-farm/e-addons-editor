@@ -124,11 +124,10 @@ class Image extends Base_Tag {
             if ($settings['featured']) {
                 $meta = get_post_thumbnail_id($post_id);
             } else {
-                $meta = Utils::get_term_field($settings['image'], $post_id);
+                $meta = Utils::get_post_field($settings['image'], $post_id);
             }
             
             $img = Utils::get_image($meta);
-            
             if (!Utils::empty($img) && !empty($img['url'])) {
                 if (!empty($img['id'])) {
                     $id = $img['id'];

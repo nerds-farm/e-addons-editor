@@ -16,7 +16,7 @@ class Pro extends Base_Extension {
     }
     
     public function get_icon() {
-        return 'enabledisabe_elementorwidgets';
+        return 'eadd-enabledisabe_elementorwidgets';
     }
     
     /**
@@ -28,7 +28,7 @@ class Pro extends Base_Extension {
      * @return string
      */
     public function get_label() {
-        return __('Disable PRO in Editor', 'e-addons');
+        return __('Disable PRO in Editor Free', 'e-addons');
     }
     
     public function __construct() {
