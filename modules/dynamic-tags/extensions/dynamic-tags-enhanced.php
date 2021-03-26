@@ -26,6 +26,7 @@ class Dynamic_Tags_Enhanced extends Base_Tag {
         Controls_Manager::SLIDER,
         Controls_Manager::MEDIA,
         Controls_Manager::GALLERY,
+        Controls_Manager::CODE,
     ];
     public $excluded = ['popup_timing'];
 

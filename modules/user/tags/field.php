@@ -76,7 +76,7 @@ class Field extends Base_Tag {
                             'label' => __('Common', 'e-addons'),
                             'options' => [
                                 'display_name' => __('Display Name', 'e-addons'),
-                                'description' => __('Descripion (Bio)', 'e-addons'),
+                                'description' => __('Description (Bio)', 'e-addons'),
                                 'user_login' => __('Login', 'e-addons'),
                                 'user_email' => __('Email', 'e-addons'),
                                 'user_url' => __('Url (Website)', 'e-addons'),
@@ -123,7 +123,7 @@ class Field extends Base_Tag {
                                 'jabber' => __('Jabber', 'e-addons'),
                             ],
                         ],
-                    //'user_description' => __('Descripion (Bio)', 'e-addons'),
+                    //'user_description' => __('Description (Bio)', 'e-addons'),
                     //'user_firstname' => __('First Name', 'e-addons'),
                     //'user_lastname' => __('Last Name', 'e-addons'),
                     ],
