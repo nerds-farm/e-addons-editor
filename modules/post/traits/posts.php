@@ -24,7 +24,43 @@ trait Posts {
                 //'label_block' => true,
                 ]
         );
-
+        
+        /*
+        $this->add_control(
+                'from_relationship',
+                [
+                    'label' => __('From Relationship', 'elementor'),
+                    'type' => Controls_Manager::SWITCHER,
+                    'condition' => [                        
+                        'source' => ['previous', 'next'],
+                    ]
+                ]
+        );
+        $this->add_control(
+                'from_relationship_field',
+                [
+                    'label' => __('Relationship field', 'elementor'),
+                    'type' => 'e-query',
+                    'placeholder' => __('Select Relationship field', 'elementor'),
+                    'label_block' => true,
+                    'query_type' => 'metas',
+                    'object_type' => 'post',
+                    'condition' => [
+                        'from_relationship!' => '',
+                        'source' => ['previous', 'next'],
+                    ]
+                ]
+        );
+        $this->add_group_control(
+                \EAddonsForElementor\Core\Controls\Groups\Sourcetype::get_type(),
+            [
+                'name' => 'from_relationship_field_source',
+                'label' => __('Select from other source', 'e-addons'),                
+            ]
+        );
+         */
+        
+        
         $this->add_control(
                 'post_id',
                 [
@@ -50,6 +86,7 @@ trait Posts {
                     'multiple' => true,
                     'separator' => 'before',
                     'condition' => [
+                        //'from_relationship' => '',
                         'source' => ['previous', 'next'],
                     ]
                 ]
@@ -61,6 +98,7 @@ trait Posts {
                     'type' => Controls_Manager::SWITCHER,
                     'separator' => 'before',
                     'condition' => [
+                        //'from_relationship' => '',
                         'source' => ['previous', 'next'],
                     ]
                 ]
@@ -74,6 +112,7 @@ trait Posts {
                     'label_block' => true,
                     'query_type' => 'taxonomies',
                     'condition' => [
+                        //'from_relationship' => '',
                         'in_same_term!' => '',
                         'source' => ['previous', 'next'],
                     ]
