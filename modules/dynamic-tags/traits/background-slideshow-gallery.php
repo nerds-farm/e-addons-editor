@@ -35,10 +35,16 @@ trait Background_Slideshow_Gallery {
     }
     
     public function get_title() {
+        /*
         $tmp = explode('\\', __CLASS__);
         $title = end($tmp);
         $title = str_replace('_', ' ', $title);
-        return __($title.' Background Slider Fix');
+        */
+        $title = parent::get_title();
+        if (isset($_GET['page']) && $_GET['page'] == 'e_addons_settings') {
+            $title .= __(' Background Slider Fix');
+        }
+        return $title;
     }
     
     public function get_icon() {

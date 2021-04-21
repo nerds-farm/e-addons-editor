@@ -82,6 +82,7 @@ class Field extends Base_Tag {
                                 'post_id' => __('Post ID', 'e-addons'),
                                 'queried_id' => __('Queried Object ID', 'e-addons'),
                                 'form_id' => __('Form ID', 'e-addons'),
+                                'form_name' => __('Form Name', 'e-addons'),
                                 'all_fields' => __('All Fields', 'e-addons'),
                                 'all_fields_not_empty' => __('All Fields (not empty)', 'e-addons'),
                             //'all_fields_labels' => __('All Fields (with Labels)', 'e-addons'),
@@ -164,6 +165,9 @@ class Field extends Base_Tag {
             if (!empty($settings['form_field'])) {
                 $field = $settings['form_field'];
                 switch ($field) {
+                    case 'form_name':
+                        $field = 'Form Name';
+                        break;
                     case 'all_fields_not_empty':
                         $field = '[all-fields|!empty]';
                         break;
@@ -201,6 +205,10 @@ class Field extends Base_Tag {
                     $meta = $_POST[$field];
                 } else {
                     switch ($settings['form_field']) {
+                        case 'form_name':
+                            $form_settings = Utils::get_settings_by_element_id($_POST['form_id']);
+                            $meta = $form_settings['form_name'];
+                            break;
                         case 'all_fields_not_empty':
                             $meta = '[all-fields|!empty]';
                             break;

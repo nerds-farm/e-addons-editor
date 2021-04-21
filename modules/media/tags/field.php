@@ -21,11 +21,11 @@ class Field extends Base_Tag {
     }
 
     public function get_icon() {
-        return 'eadd-dynamic-tag-media-field';
+        return 'eadd-dynamic-tag-media';
     }
 
     public function get_pid() {
-        return 7461;
+        return 19071;
     }
 
     public function get_title() {
