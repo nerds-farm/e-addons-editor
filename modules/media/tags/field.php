@@ -193,8 +193,8 @@ class Field extends Base_Tag {
         if (empty($settings))
             return;
 
-        $media_id = $this->get_media_id();
-
+        $media_id = $this->get_media_id();        
+        
         if ($media_id) {
             if (!empty($settings['tag_field'])) {
                 $field = $settings['tag_field'];

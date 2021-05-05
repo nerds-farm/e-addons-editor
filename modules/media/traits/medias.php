@@ -99,7 +99,7 @@ trait Medias {
                     return get_theme_mod( 'custom_logo' );
                     
                 case 'meta_post':
-                    return get_user_meta(get_the_ID(), $settings['meta_post_name'], true);
+                    return get_post_meta(get_the_ID(), $settings['meta_post_name'], true);
                     
                 case 'meta_user':
                     $user_id = get_current_user_id();

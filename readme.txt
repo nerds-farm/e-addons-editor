@@ -17,6 +17,9 @@ Simplify your working area, removing extra bloated contents and add dynamic tags
 
 == Changelog ==
 
+= 1.9.0.1 =
+* Fix: Media Field from Post field
+
 = 1.9 =
 * Add: Dynamic Tag Media Field
 * Add: Form Name on Dynamic Tag Form
