@@ -24,7 +24,7 @@ class Search extends Base_Extension {
     
     public function __construct() {
         parent::__construct();
-        //add_action('elementor/editor/after_enqueue_scripts', [$this, 'enqueue_editor_assets']);
+        add_action('elementor/editor/after_enqueue_scripts', [$this, 'enqueue_editor_assets']);
     }
 
     /**
