@@ -56,8 +56,9 @@ class Dynamic_Tags_Enhanced extends Base_Tag {
         return 'eadd-enhanced-dynamic-tags';
     }
     
-    public function add_controls_dynamic_tags($manager) {        
+    public function add_controls_dynamic_tags($manager) {             
         $controls = $manager->get_controls();
+        //var_dump($controls); die();
         foreach ($controls as $ckey => $control) {
             if (in_array($control->get_type(), self::$types)) {
                 $dynamic = $control->get_settings('dynamic');        
@@ -68,11 +69,27 @@ class Dynamic_Tags_Enhanced extends Base_Tag {
     }
 
     public function remove_dynamic_tags($element, $args) {
-        $controls = $element->get_controls();
+        
+        $stacks = \Elementor\Plugin::$instance->controls_manager->get_stacks();
+        //var_dump(array_keys($stacks)); die();       
+        
+        if (!empty($stacks['popup_triggers'])) {
+            foreach ($stacks['popup_triggers']['controls'] as $ckey => $control) {
+                $element->update_control($control['name'], array('dynamic' => false));
+            }
+        }
+        
+        if (!empty($stacks['popup_timing'])) {
+            foreach ($stacks['popup_timing']['controls'] as $ckey => $control) {
+                $element->update_control($control['name'], array('dynamic' => false));
+            }
+        }
+        
+        /*$controls = $element->get_controls();        
         foreach ($controls as $ckey => $controls) {
             $controls = self::_remove_dynamic_tags($controls);
             $element->update_control($ckey, $controls);
-        }
+        }*/
     }
     public static function _remove_dynamic_tags($controls) {
         if (!empty($controls)) {

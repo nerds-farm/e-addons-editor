@@ -138,6 +138,15 @@ trait Posts {
             return;
 
         $post_id = get_the_ID();
+        
+        global $post;        
+        if (!empty($post) && $post->post_type == 'attachment') {
+            $post_id = $post->ID;
+        }
+        /*$queried_object = get_queried_object();
+        if (!empty($queried_object) && get_class($queried_object) == 'WP_Post' && $queried_object->post_type == 'attachment') {
+            $post_id = $queried_object->ID;
+        }*/
 
         if ($settings['source']) {
             switch ($settings['source']) {

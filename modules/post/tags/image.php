@@ -13,15 +13,15 @@ if (!defined('ABSPATH')) {
 }
 
 class Image extends Base_Tag {
-    
+
     use \EAddonsEditor\Modules\Post\Traits\Posts;
-    
+
     public $is_data = true;
-    
+
     public function get_name() {
         return 'e-tag-post-image';
     }
-    
+
     public function get_icon() {
         return 'eadd-dynamic-tag-post-image';
     }
@@ -37,6 +37,7 @@ class Image extends Base_Tag {
     public function get_group() {
         return 'post';
     }
+
     public static function _group() {
         return self::_groups('post');
     }
@@ -90,17 +91,33 @@ class Image extends Base_Tag {
                     ]
                 ]
         );
-        
+
         $this->add_source_controls();
+
+        $this->add_control('image_size',
+                [
+                    'label' => _x('Image Size', 'Image Size Control', 'elementor'),
+                    'type' => Controls_Manager::SELECT,
+                    'options' => Utils::get_image_sizes(),
+                    'separator' => 'before',
+        ]);
+
+        $this->add_control('image_custom_dimension',
+                [
+                    'label' => _x('Image Dimension', 'Image Size Control', 'elementor'),
+                    'type' => Controls_Manager::IMAGE_DIMENSIONS,
+                    'description' => esc_html__('You can crop the original image size to any custom size. You can also set a single value for height or width in order to keep the original size ratio.', 'elementor'),
+                    'condition' => [
+                        'image_size' => 'custom',
+                    ],                    
+        ]);
 
         $this->add_control(
                 'fallback_image',
                 [
                     'label' => __('Fallback', 'elementor'),
                     'type' => Controls_Manager::MEDIA,
-                    'dynamic' => [
-                        'active' => true,
-                    ],
+                    'separator' => 'before',
                     'default' => [
                         'url' => Utils::get_placeholder_image_src(),
                     ],
@@ -120,23 +137,45 @@ class Image extends Base_Tag {
         $id = '';
         $url = '';
         if ($post_id) {
-            // custom field
-            if ($settings['featured']) {
-                $meta = get_post_thumbnail_id($post_id);
+
+            $post = get_post($post_id);
+            if ($settings['featured'] && $post->post_type == 'attachment') {
+
+                $id = $post_id;
+                $url = $post->guid;
             } else {
-                $meta = Utils::get_post_field($settings['image'], $post_id);
-            }
-            
-            $img = Utils::get_image($meta);
-            if (!Utils::empty($img) && !empty($img['url'])) {
-                if (!empty($img['id'])) {
-                    $id = $img['id'];
+
+                // custom field
+                if ($settings['featured']) {
+                    $meta = get_post_thumbnail_id($post_id);
+                } else {
+                    $meta = Utils::get_post_field($settings['image'], $post_id);
                 }
-                $url = $img['url'];
-            } else {
-                if (!empty($settings['fallback_image']['url'])) {
-                    $id = $settings['fallback_image']['id'];
-                    $url = $settings['fallback_image']['url'];
+
+                $img = Utils::get_image($meta);
+                if (!Utils::empty($img) && !empty($img['url'])) {
+                    if (!empty($img['id'])) {
+                        $id = $img['id'];
+                    }
+                    $url = $img['url'];
+                } else {
+                    if (!empty($settings['fallback_image']['url'])) {
+                        $id = $settings['fallback_image']['id'];
+                        $url = $settings['fallback_image']['url'];
+                    }
+                }
+                
+                if (!empty($settings['image_size']) && $settings['image_size'] != 'full') {
+                    $size = $settings['image_size'];
+                    if ($size == 'custom') {
+                        $url = \Elementor\Group_Control_Image_Size::get_attachment_image_src($id, 'image', $settings);                        
+                    } else {
+                        $image = wp_get_attachment_image_src($id, $size);
+                        if (!empty($image)) {
+                            $url = reset($image);
+                        }
+                    }
+                    $id = null; // needed or return the size set in Widget Image
                 }
             }
         }

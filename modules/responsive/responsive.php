@@ -10,7 +10,7 @@ if (!defined('ABSPATH')) {
 class Responsive extends Module_Base {
 
     public function __construct() {
-        parent::__construct();
+        //parent::__construct();
     }
 
 }

@@ -87,8 +87,17 @@ trait Medias {
         if (empty($settings))
             return;
 
+        global $post;
+        
         $media_id = get_post_thumbnail_id();
-
+        if (!empty($post) && $post->post_type == 'attachment') {
+            $media_id = $post->ID;
+        }
+        $queried_object = get_queried_object();
+        if (!empty($queried_object) && get_class($queried_object) == 'WP_Post' && $queried_object->post_type == 'attachment') {
+            $media_id = $queried_object->ID;
+        }
+        
         if ($settings['source']) {
             switch ($settings['source']) {
 
