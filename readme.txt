@@ -4,7 +4,7 @@ Donate link: https://e-addons.com/donate/
 Tags: elementor, addons, extension, dynamic, template, display, visibility, hide, hidden
 Requires at least: 5.0
 Tested up to: 5.7.2
-Stable tag: 1.9
+Stable tag: 1.9.1
 Requires PHP: 7.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -17,8 +17,9 @@ Simplify your working area, removing extra bloated contents and add dynamic tags
 
 == Changelog ==
 
-= 1.9.0.1 =
-* Fix: Media Field from Post field
+= 1.9.1 =
+* Add: Dynamic Tag Post Image with size (for BG) 
+* Fix: Media Fields compatible with Popup
 
 = 1.9 =
 * Add: Dynamic Tag Media Field
