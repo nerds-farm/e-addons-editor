@@ -151,8 +151,10 @@ class Image extends Base_Tag {
                 } else {
                     $meta = Utils::get_post_field($settings['image'], $post_id);
                 }
-
                 $img = Utils::get_image($meta);
+                if (!$img && filter_var($meta, FILTER_VALIDATE_URL)) {
+                    $img['url'] = $meta;
+                }
                 if (!Utils::empty($img) && !empty($img['url'])) {
                     if (!empty($img['id'])) {
                         $id = $img['id'];
@@ -165,17 +167,19 @@ class Image extends Base_Tag {
                     }
                 }
                 
-                if (!empty($settings['image_size']) && $settings['image_size'] != 'full') {
-                    $size = $settings['image_size'];
-                    if ($size == 'custom') {
-                        $url = \Elementor\Group_Control_Image_Size::get_attachment_image_src($id, 'image', $settings);                        
-                    } else {
-                        $image = wp_get_attachment_image_src($id, $size);
-                        if (!empty($image)) {
-                            $url = reset($image);
+                if ($id) {
+                    if (!empty($settings['image_size']) && $settings['image_size'] != 'full') {
+                        $size = $settings['image_size'];
+                        if ($size == 'custom') {
+                            $url = \Elementor\Group_Control_Image_Size::get_attachment_image_src($id, 'image', $settings);                        
+                        } else {
+                            $image = wp_get_attachment_image_src($id, $size);
+                            if (!empty($image)) {
+                                $url = reset($image);
+                            }
                         }
+                        $id = null; // needed or return the size set in Widget Image
                     }
-                    $id = null; // needed or return the size set in Widget Image
                 }
             }
         }

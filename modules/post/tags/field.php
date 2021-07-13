@@ -169,8 +169,9 @@ class Field extends Base_Tag {
         if (empty($settings))
             return;
 
-        $post_id = $this->get_post_id();
-
+        $post_id = $this->get_post_id();        
+        //var_dump($post_id);
+        
         if ($post_id) {
             if (!empty($settings['tag_field'])) {
                 $field = $settings['tag_field'];

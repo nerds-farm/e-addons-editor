@@ -4,7 +4,7 @@ Donate link: https://e-addons.com/donate/
 Tags: elementor, addons, extension, dynamic, template, display, visibility, hide, hidden
 Requires at least: 5.0
 Tested up to: 5.7.2
-Stable tag: 1.9.1
+Stable tag: 1.9.2
 Requires PHP: 7.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -16,6 +16,9 @@ Greater cleanliness in the Editor and forced Dynamic Tags on all controls
 Simplify your working area, removing extra bloated contents and add dynamic tags to all supported Controls.
 
 == Changelog ==
+
+= 1.9.2 =
+* Fix: Jet Gallery Background Slider for Option and Custom
 
 = 1.9.1 =
 * Add: Dynamic Tag Post Image with size (for BG) 
